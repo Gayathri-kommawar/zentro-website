@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>ZENTRO</title>
+
+    <link rel="icon" href="{{ url_for('static', filename='css/images/favicon.png') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+</head>
+
+<body class="bg-info-subtle">
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar navbar-dark bg-dark px-4">
+
+        <a class="navbar-brand d-flex align-items-center text-white">
+            <img src="{{ url_for('static', filename='css/images/logo.png') }}" alt="Zentro Logo" width="45" height="45"
+                class="me-2">
+
+            <span class="fw-bold">
+                ZENTRO
+            </span>
+        </a>
+
+        <!-- SEARCH -->
+
+        <form class="d-flex" method="GET" action="/search">
+
+            <input type="text" name="keyword" class="form-control me-2" placeholder="Search Products">
+
+            <button class="btn btn-warning">
+                Search
+            </button>
+
+        </form>
+
+        <!-- BUTTONS -->
+
+        <div>
+
+            <a href="/wishlist" class="btn btn-danger">
+                Wishlist
+            </a>
+
+            <a href="/cart" class="btn btn-warning">
+                Cart
+            </a>
+
+            <a href="/track-orders" class="btn btn-primary">
+                Track Orders
+            </a>
+
+            <a href="/profile" class="btn btn-info">
+                Profile
+            </a>
+
+            <a href="/logout" class="btn btn-dark">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+    <!-- PRODUCTS -->
+
+    <div class="container py-5">
+
+        <h1 class="text-center mb-5">
+            Products
+        </h1>
+
+        <div class="row">
+
+            {% for item in products %}
+
+            <div class="col-md-4 mb-4">
+
+                <div class="card shadow h-100">
+
+                    <!-- PRODUCT IMAGE -->
+
+                    <img src="{{ item[3] }}" class="card-img-top" style="height:250px;object-fit:cover">
+
+
+
+                    <!-- PRODUCT DETAILS -->
+
+                    <div class="card-body">
+
+                        <h3>{{ item[1] }}</h3>
+
+                        <h4 class="text-success">
+                            ₹{{ item[2] }}
+                        </h4>
+
+                        <a href="/product/{{ item[0] }}" class="btn btn-primary mt-3">
+                            View Details
+                        </a>
+
+                        <a href="/add-to-cart/{{ item[0] }}" class="btn btn-success mt-3">
+                            Add To Cart
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>

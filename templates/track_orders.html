@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Track Orders</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    >
+
+</head>
+
+<body class="bg-light">
+
+<nav class="navbar navbar-dark bg-dark px-4">
+
+    <a class="navbar-brand">
+        Order Tracking
+    </a>
+
+    <a href="/dashboard" class="btn btn-warning">
+        Back
+    </a>
+
+</nav>
+
+<div class="container py-5">
+
+    <h1 class="text-center mb-5">
+        Your Orders
+    </h1>
+
+    <div class="row">
+
+        {% for item in orders %}
+
+        <div class="col-md-4 mb-4">
+
+            <div class="card shadow">
+
+                <img
+                  src="{{ item[3] }}"
+                  class="card-img-top"
+                  style="height:250px;object-fit:cover"
+                >
+
+                <div class="card-body">
+
+                    <h3>{{ item[1] }}</h3>
+
+                    <h4 class="text-success">
+                        ₹{{ item[2] }}
+                    </h4>
+
+                    <h5 class="mt-3">
+                        Quantity: {{ item[4] }}
+                    </h5>
+
+                    <h5>
+                        Total: ₹{{ item[5] }}
+                    </h5>
+
+                    <h5 class="mt-3 text-primary">
+                        Status:
+                        {{ item[6] }}
+                    </h5>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
+
